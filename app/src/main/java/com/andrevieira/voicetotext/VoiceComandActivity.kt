@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
-import android.view.View
 import kotlinx.android.synthetic.main.activity_voice_comand.*
 import java.util.*
 
@@ -18,6 +17,7 @@ class VoiceComandActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voice_comand)
+        button.setOnClickListener { startSpeak() }
     }
 
     fun askSpeakInput() {
@@ -38,7 +38,6 @@ class VoiceComandActivity : Activity() {
                 if (resultCode == Activity.RESULT_OK) {
                     val result = data
                             ?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-
                     msg.setText(result!![0])
                 }
             }
@@ -46,7 +45,7 @@ class VoiceComandActivity : Activity() {
 
     }
 
-    fun startSpeak(view: View) {
+    fun startSpeak() {
         askSpeakInput()
     }
 }
